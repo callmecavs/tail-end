@@ -44,6 +44,10 @@ transition(node, cssString).then(() => console.log('CSS string added.'))
 transition(node, cssObj).then(() => console.log('CSS object added.'))
 ```
 
+## See Also
+
+* [selly](https://github.com/callmecavs/selly) - Convenient and optimized DOM element selection.
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
