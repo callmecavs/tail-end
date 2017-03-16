@@ -42,7 +42,7 @@ const tailEnd = (node, css) => new Promise((resolve, reject) => {
     return
   }
 
-  // apply basic CSS-in-JS object to node.style (fastest method)
+  // apply basic CSS-in-JS object to node.style
   if (typeCss === 'object') {
     inFrame(() => {
       Object
