@@ -11,13 +11,9 @@ const inFrame = func => window.requestAnimationFrame(func)
 
 const tailEnd = (node, css) => new Promise((resolve, reject) => {
   // error out for invalid node
-  if (!node instanceof HTMLElement) {
+  if (!node instanceof window.HTMLElement) {
     throw new Error('tail-end: an element node is required.')
   }
-
-  // cache parameter types
-  const typeConfig = type(config)
-  const typeCss = type(css)
 
   // create the transitionend handler
   const handler = event => {
@@ -37,14 +33,17 @@ const tailEnd = (node, css) => new Promise((resolve, reject) => {
     return
   }
 
+  // cache type of css param
+  const typeCss = type(css)
+
   // apply string of CSS
-  if (typeConfig === 'string') {
+  if (typeCss === 'string') {
     inFrame(() => node.setAttribute('style', css))
     return
   }
 
   // apply basic CSS-in-JS object to node.style (fastest method)
-  if (typeConfig === 'object') {
+  if (typeCss === 'object') {
     inFrame(() => {
       Object
         .keys(css)
