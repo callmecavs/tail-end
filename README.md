@@ -10,7 +10,11 @@ Promise-wrapped element transitions.
 $ npm i tail-end --save
 ```
 
-## Use
+## API
+
+### .tailend(node, [css])
+
+Add a Promise-wrapped `transitionend` handler to the node. It resolves, and removes itself, when the first `transitionend` event is triggered.
 
 ```javascript
 import transition from 'tail-end'
@@ -18,5 +22,30 @@ import transition from 'tail-end'
 // cache the node
 const node = document.getElementById('example')
 
-// bind a one-off transitionend handler
+// bind the transitionend event (will only fire once)
+transition(node)
+  .then(() => console.log('All done.'))
+  .catch(error => console.log('node or css param invalid: ', error))
+
+// do something to trigger it
 ```
+
+Optionally, pass CSS (as a string or object) to apply to the node.
+
+This CSS is added in the next frame, and will trigger the `transitionend` handler.
+
+```javascript
+const cssString = 'transition: transform 1s ease; transform: translate3d(100px, 0, 0);'
+
+const cssObj = {
+  transition: 'transform 1s ease',
+  transform: 'translate3d(200px, 0, 0)'
+}
+
+transition(node, cssString).then(() => console.log('CSS string added.'))
+transition(node, cssObj).then(() => console.log('CSS object added.'))
+```
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
