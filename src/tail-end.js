@@ -8,9 +8,9 @@ const type = thing => Object.prototype.toString
   .toLowerCase()
 
 const tailEnd = (node, css) => new Promise((resolve, reject) => {
-  // error out for invalid node
+  // reject for invalid node
   if (!(node instanceof window.HTMLElement)) {
-    throw new Error('tail-end: an element node is required.')
+    return reject('tail-end: an element node is required.')
   }
 
   // create the transitionend handler
@@ -53,8 +53,8 @@ const tailEnd = (node, css) => new Promise((resolve, reject) => {
     return
   }
 
-  // error out for invalid css type
-  throw new Error('tail-end: css must be a string or object.')
+  // reject for invalid css type
+  return reject('tail-end: css must be a string or object.')
 })
 
 export default tailEnd
