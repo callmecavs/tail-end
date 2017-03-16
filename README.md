@@ -12,9 +12,9 @@ $ npm i tail-end --save
 
 ## API
 
-### .tailend(node, [css])
+### .tailend(node[, css])
 
-Add a Promise-wrapped `transitionend` handler to the node. It resolves, and removes itself, when the first `transitionend` event is triggered.
+Adds a Promise-wrapped `transitionend` event handler to the node. It resolves, and removes itself, when the first `transitionend` event is triggered.
 
 ```javascript
 import transition from 'tail-end'
@@ -30,9 +30,7 @@ transition(node)
 // do something to trigger it
 ```
 
-Optionally, pass CSS (as a string or object) to apply to the node.
-
-This CSS is added in the next frame, and will trigger the `transitionend` handler.
+Optionally, pass CSS (as a string or object) to apply to the node. This CSS is added in the next frame, and will trigger the `transitionend` handler, eventually leading to the Promise resolving.
 
 ```javascript
 const cssString = 'transition: transform 1s ease; transform: translate3d(100px, 0, 0);'
