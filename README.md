@@ -48,6 +48,11 @@ transition(node, cssObj).then(() => console.log('CSS object added.'))
 
 * [selly](https://github.com/callmecavs/selly) - Convenient and optimized DOM element selection.
 
+## Roadmap
+
+* Curry, and reverse the parameter order
+  * Creates a define once -> run multiple times relationship between CSS transitions and nodes
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
