@@ -1,20 +1,20 @@
 {
   "name":        "tail-end",
-  "description": "",
+  "description": "Promise-wrapped element transitions.",
 
   "main":        "dist/tail-end.js",
   "module":      "dist/tail-end.module.js",
   "jsnext:main": "dist/tail-end.module.js",
 
   "version": "0.0.1",
-  "license": "",
+  "license": "MIT",
 
-  "repository": "",
+  "repository": "callmecavs/tail-end",
 
   "author": {
-    "name":  "",
-    "email": "",
-    "url":   ""
+    "name":  "Michael Cavalea",
+    "email": "callmecavs@gmail.com",
+    "url":   "http://callmecavs.com/"
   },
 
   "scripts": {
