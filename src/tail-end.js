@@ -9,7 +9,7 @@ const type = thing => Object.prototype.toString
 
 const tailEnd = (node, css) => new Promise((resolve, reject) => {
   // error out for invalid node
-  if (!node instanceof window.HTMLElement) {
+  if (!(node instanceof window.HTMLElement)) {
     throw new Error('tail-end: an element node is required.')
   }
 
