@@ -1,7 +1,7 @@
-// simple rAF helper
+// rAF helper
 const inFrame = func => window.requestAnimationFrame(func)
 
-// simple, better typeof helper
+// better typeof helper
 const type = thing => Object.prototype.toString
   .call(thing)
   .slice(8, -1)
@@ -20,7 +20,7 @@ const tailEnd = (node, css) => new Promise((resolve, reject) => {
     node.removeEventListener('transitionend', handler)
 
     // resolve the (now clean) node
-    resolve(node)
+    return resolve(node)
   }
 
   // bind the transitionend handler
