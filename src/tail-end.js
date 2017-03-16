@@ -1,13 +1,11 @@
-const toString = Object.prototype.toString
+// simple rAF helper
+const inFrame = func => window.requestAnimationFrame(func)
 
-// simple, better typeof
-const type = thing => toString
+// simple, better typeof helper
+const type = thing => Object.prototype.toString
   .call(thing)
   .slice(8, -1)
   .toLowerCase()
-
-// rAF helper
-const inFrame = func => window.requestAnimationFrame(func)
 
 const tailEnd = (node, css) => new Promise((resolve, reject) => {
   // error out for invalid node
