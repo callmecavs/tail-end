@@ -5,12 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      #box1,
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+      }
+    </style>
   </head>
   <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+
     <script src="../dist/tail-end.js"></script>
     <script>
       console.log('Module assigned to window.TailEnd. Logged below:')
       console.log(TailEnd)
+
+      const box1 = document.getElementById('box1')
+      const box2 = document.getElementById('box2')
+
+      const cssString = 'transition: transform 1s ease; transform: translate3d(100px, 0, 0);'
+
+      const cssObj = {
+        transition: 'transform 1s ease',
+        transform: 'translate3d(200px, 0, 0)'
+      }
+
+      TailEnd(box1, cssString)
+        .then(() => console.log('box1 done'))
+        .catch(error => console.log(error))
+
+      TailEnd(box2, cssObj)
+        .then(() => console.log('box2 done'))
+        .catch(error => console.log(error))
     </script>
   </body>
 </html>
