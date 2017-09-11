@@ -17,4 +17,8 @@ const builder = eventName => node => new Promise((resolve, reject) => {
   node.addEventListener(eventName, handler)
 })
 
-export default tailEnd
+const animationEnd = builder('animationend')
+const transitionEnd = builder('transitionend')
+
+export { animationEnd }
+export { transitionEnd }
