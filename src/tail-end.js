@@ -1,22 +1,20 @@
-const tailEnd = (node, css) => new Promise((resolve, reject) => {
+const builder = eventName => node => new Promise((resolve, reject) => {
   // reject for invalid node
   if (!(node instanceof window.HTMLElement)) {
     return reject('tail-end: an element node is required.')
   }
 
-  // create the transitionend handler
+  // create the event handler
   const handler = event => {
-    // TODO: check property name(s), and conditionally unbind?
     // unbind the handler
-    node.removeEventListener('transitionend', handler)
+    node.removeEventListener(eventName, handler)
 
     // resolve the (now clean) node
     return resolve(node)
   }
 
-  // bind the transitionend handler
-  node.addEventListener('transitionend', handler)
-
+  // bind the handler
+  node.addEventListener(eventName, handler)
 })
 
 export default tailEnd
