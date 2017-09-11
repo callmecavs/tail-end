@@ -14,7 +14,9 @@ $ npm i tail-end --save
 
 ### .animationEnd(node)
 
-Adds a Promise-wrapped `animationend` event handler to the node. It resolves and removes itself when the next `animationend` event is triggered.
+Adds a Promise-wrapped `animationend` event handler to the node.
+
+It resolves and removes itself when the next `animationend` event is triggered.
 
 ```javascript
 import { animationEnd } from 'tail-end'
@@ -32,7 +34,9 @@ animationEnd(node)
 
 ### .transitionEnd(node)
 
-Adds a Promise-wrapped `transitionend` event handler to the node. It resolves and removes itself when the next `transitionend` event is triggered.
+Adds a Promise-wrapped `transitionend` event handler to the node.
+
+It resolves and removes itself when the next `transitionend` event is triggered.
 
 ```javascript
 import { transitionEnd } from 'tail-end'
@@ -47,6 +51,10 @@ transitionEnd(node)
 
 // TODO: something to trigger the event
 ```
+
+## Roadmap
+
+- [ ] Event name detection (these events are prefixed in some browsers)
 
 ## License
 
