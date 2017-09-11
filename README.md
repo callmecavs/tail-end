@@ -2,7 +2,7 @@
 
 [![tail-end on NPM](https://img.shields.io/npm/v/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![tail-end Downloads on NPM](https://img.shields.io/npm/dm/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-Promise-wrapped element transitions.
+Promise-wrapped animations and transitions.
 
 ## Install
 
@@ -12,22 +12,40 @@ $ npm i tail-end --save
 
 ## API
 
-### .tailend(node[, css])
+### .animationEnd(node)
 
-Adds a Promise-wrapped `transitionend` event handler to the node. It resolves, and removes itself, when the first `transitionend` event is triggered.
+Adds a Promise-wrapped `animationend` event handler to the node. It resolves and removes itself when the next `animationend` event is triggered.
 
 ```javascript
-import transition from 'tail-end'
+import { animationEnd } from 'tail-end'
 
 // cache the node
 const node = document.getElementById('example')
 
-// bind the transitionend event (will only fire once)
-transition(node)
-  .then(() => console.log('All done.'))
-  .catch(error => console.log('node or css param invalid: ', error))
+// bind the animationend event
+animationEnd(node)
+  .then(() => console.log('Animation done.'))
+  .catch(error => console.log(`Invalid node: ${error}`))
 
-// do something to trigger it
+// TODO: something to trigger the event
+```
+
+### .transitionEnd(node)
+
+Adds a Promise-wrapped `transitionend` event handler to the node. It resolves and removes itself when the next `transitionend` event is triggered.
+
+```javascript
+import { transitionEnd } from 'tail-end'
+
+// cache the node
+const node = document.getElementById('example')
+
+// bind the animationend event
+transitionEnd(node)
+  .then(() => console.log('Transition done.'))
+  .catch(error => console.log(`Invalid node: ${error}`))
+
+// TODO: something to trigger the event
 ```
 
 ## License
