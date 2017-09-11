@@ -30,29 +30,6 @@ transition(node)
 // do something to trigger it
 ```
 
-Optionally, pass CSS (as a string or object) to apply to the node. This CSS is added in the next frame, and will trigger the `transitionend` handler, eventually leading to the Promise resolving.
-
-```javascript
-const cssString = 'transition: transform 1s ease; transform: translate3d(100px, 0, 0);'
-
-const cssObj = {
-  transition: 'transform 1s ease',
-  transform: 'translate3d(200px, 0, 0)'
-}
-
-transition(node, cssString).then(() => console.log('CSS string added.'))
-transition(node, cssObj).then(() => console.log('CSS object added.'))
-```
-
-## See Also
-
-* [selly](https://github.com/callmecavs/selly) - Convenient and optimized DOM element selection.
-
-## Roadmap
-
-* Curry, and reverse the parameter order
-  * Creates a define once -> run multiple times relationship between CSS transitions and nodes
-
 ## License
 
 [MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
