@@ -54,7 +54,7 @@ transitionEnd(node)
 
 ## Roadmap
 
-- [ ] Event name detection (these events are prefixed in some browsers)
+- [ ] Event name detection (`animationend` and `transitionend` are prefixed in some browsers)
 
 ## License
 
