@@ -1,12 +1,12 @@
 {
   "name":        "tail-end",
-  "description": "Promise-wrapped element transitions.",
+  "description": "Promise-wrapped animations and transitions.",
 
   "main":        "dist/tail-end.js",
   "module":      "dist/tail-end.module.js",
   "jsnext:main": "dist/tail-end.module.js",
 
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
 
   "repository": "callmecavs/tail-end",
