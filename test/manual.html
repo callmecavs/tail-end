@@ -13,6 +13,18 @@
         height: 100px;
         background-color: black;
       }
+
+      #box2 {
+        transition: transform .5s ease;
+      }
+
+      @keyframes test {
+        from { opacity: 1; }
+        to   { opacity: 0; }
+      }
+
+      body.is-active #box1 { animation: test .5s ease; }
+      body.is-active #box2 { transform: translate3d(100px, 0, 0); }
     </style>
   </head>
   <body>
@@ -24,23 +36,16 @@
       console.log('Module assigned to window.TailEnd. Logged below:')
       console.log(TailEnd)
 
-      const box1 = document.getElementById('box1')
-      const box2 = document.getElementById('box2')
+      TailEnd
+        .animationEnd(document.getElementById('box1'))
+        .then(() => console.log('#box1 transition done.'))
 
-      const cssString = 'transition: transform 1s ease; transform: translate3d(100px, 0, 0);'
+      TailEnd
+        .transitionEnd(document.getElementById('box2'))
+        .then(() => console.log('#box2 animation done.'))
 
-      const cssObj = {
-        transition: 'transform 1s ease',
-        transform: 'translate3d(200px, 0, 0)'
-      }
-
-      TailEnd(box1, cssString)
-        .then(() => console.log('box1 done'))
-        .catch(error => console.log(error))
-
-      TailEnd(box2, cssObj)
-        .then(() => console.log('box2 done'))
-        .catch(error => console.log(error))
+      const runTest = () => document.body.classList.add('is-active')
+      setTimeout(runTest, 500)
     </script>
   </body>
 </html>
