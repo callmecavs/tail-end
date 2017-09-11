@@ -1,12 +1,3 @@
-// rAF helper
-const inFrame = func => window.requestAnimationFrame(func)
-
-// better typeof helper
-const type = thing => Object.prototype.toString
-  .call(thing)
-  .slice(8, -1)
-  .toLowerCase()
-
 const tailEnd = (node, css) => new Promise((resolve, reject) => {
   // reject for invalid node
   if (!(node instanceof window.HTMLElement)) {
@@ -26,35 +17,6 @@ const tailEnd = (node, css) => new Promise((resolve, reject) => {
   // bind the transitionend handler
   node.addEventListener('transitionend', handler)
 
-  // check for no css, meaning an early exit
-  if (!css) {
-    return
-  }
-
-  // cache type of css param
-  const typeCss = type(css)
-
-  // apply string of CSS
-  if (typeCss === 'string') {
-    inFrame(() => node.setAttribute('style', css))
-    return
-  }
-
-  // apply basic CSS-in-JS object to node.style
-  if (typeCss === 'object') {
-    inFrame(() => {
-      Object
-        .keys(css)
-        .forEach(key => {
-          node.style[key] = css[key]
-        })
-    })
-
-    return
-  }
-
-  // reject for invalid css type
-  return reject('tail-end: css must be a string or object.')
 })
 
 export default tailEnd
