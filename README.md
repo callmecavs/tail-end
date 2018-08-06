@@ -2,7 +2,7 @@
 
 [![tail-end on NPM](https://img.shields.io/npm/v/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![tail-end Downloads on NPM](https://img.shields.io/npm/dm/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-Promise-wrapped animations and transitions (`async`/`await` friendly).
+Promise-wrapped CSS animations and transitions (`async`/`await` friendly).
 
 ## Install
 

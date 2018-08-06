@@ -1,6 +1,6 @@
 {
   "name":        "tail-end",
-  "description": "Promise-wrapped animations and transitions (async/await friendly).",
+  "description": "Promise-wrapped CSS animations and transitions (async/await friendly).",
 
   "main":        "dist/tail-end.js",
   "module":      "dist/tail-end.module.js",
