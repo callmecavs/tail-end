@@ -1,4 +1,4 @@
-const builder = eventName => node => new Promise((resolve, reject) => {
+const builder = eventName => (node, func) => new Promise((resolve, reject) => {
   // reject for invalid node
   if (!(node instanceof window.HTMLElement)) {
     return reject(new Error('tail-end: an element node is required.'))
@@ -15,8 +15,12 @@ const builder = eventName => node => new Promise((resolve, reject) => {
 
   // bind the handler
   node.addEventListener(eventName, handler)
-})
 
+  // if it exists, call the function passing in the node
+  if (typeof func === 'function') {
+    func(node)
+  }
+})
 
 export const animationEnd = builder('animationend')
 export const transitionEnd = builder('transitionend')
