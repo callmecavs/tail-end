@@ -18,7 +18,8 @@ const builder = eventName => (node, func) => new Promise((resolve, reject) => {
 
   // if it exists, call the function passing in the node
   if (typeof func === 'function') {
-    func(node)
+    const framed = () => func(node)
+    window.requestAnimationFrame(framed)
   }
 })
 

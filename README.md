@@ -30,7 +30,7 @@ animationEnd(node)
 node.classList.add('will-animate')
 ```
 
-For usage with `async`/`await` you can pass in a `function` as the second parameter. The function will be called after the event listener is bound, and passed the `node`.
+For usage with `async`/`await` you can pass in a `function` as the second parameter. The function will be called in an [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) after the event listener is bound, and passed the `node`.
 
 ```javascript
 import { transitionEnd } from 'tail-end'
