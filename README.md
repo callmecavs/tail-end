@@ -37,7 +37,7 @@ For usage with `async`/`await` you can pass in a `function` as the second parame
 ```javascript
 import { transitionEnd } from 'tail-end'
 
-// define a sequence of animations/transition with async/await
+// define a sequence of animations/transitions with async/await
 const sequence = async () => {
   await transitionEnd(node, node => node.style.transform = 'translate3d(100px, 0, 0)')
   await transitionEnd(node, node => node.style.transform = 'translate3d(0, 0, 0)')
