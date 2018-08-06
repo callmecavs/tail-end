@@ -23,8 +23,8 @@
         to   { opacity: 0; }
       }
 
-      body.is-active #box1 { animation: test .5s ease; }
-      body.is-active #box2 { transform: translate3d(100px, 0, 0); }
+      #box1.is-active { animation: test .5s ease; }
+      #box2.is-active { transform: translate3d(100px, 0, 0); }
     </style>
   </head>
   <body>
@@ -36,16 +36,18 @@
       console.log('Module assigned to window.TailEnd. Logged below:')
       console.log(TailEnd)
 
+      const box1 = document.getElementById('box1')
+      const box2 = document.getElementById('box2')
+
       TailEnd
-        .animationEnd(document.getElementById('box1'))
+        .animationEnd(box1)
         .then(() => console.log('#box1 transition done.'))
 
       TailEnd
-        .transitionEnd(document.getElementById('box2'))
-        .then(() => console.log('#box2 animation done.'))
+        .transitionEnd(box2, node => node.classList.add('is-active'))
+        .then(() => console.log('#box2 animation done (via passed in function).'))
 
-      const runTest = () => document.body.classList.add('is-active')
-      setTimeout(runTest, 500)
+      setTimeout(() => box1.classList.add('is-active'), 500)
     </script>
   </body>
 </html>
