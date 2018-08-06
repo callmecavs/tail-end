@@ -14,7 +14,7 @@
         background-color: black;
       }
 
-      #box2 {
+      #box1 {
         transition: transform .5s ease;
       }
 
@@ -23,8 +23,8 @@
         to   { opacity: 0; }
       }
 
-      #box1.is-active { animation: test .5s ease; }
-      #box2.is-active { transform: translate3d(100px, 0, 0); }
+      #box1.is-active { transform: translate3d(100px, 0, 0); }
+      #box2.is-active { animation: test .5s ease forwards; }
     </style>
   </head>
   <body>
@@ -39,15 +39,22 @@
       const box1 = document.getElementById('box1')
       const box2 = document.getElementById('box2')
 
+      // should error
       TailEnd
-        .animationEnd(box1)
+        .transitionEnd(null)
+        .catch(error => console.log(error))
+
+      // should log (only node passed in, transition triggered after)
+      TailEnd
+        .transitionEnd(box1)
         .then(() => console.log('#box1 transition done.'))
 
-      TailEnd
-        .transitionEnd(box2, node => node.classList.add('is-active'))
-        .then(() => console.log('#box2 animation done (via passed in function).'))
+      box1.classList.add('is-active')
 
-      setTimeout(() => box1.classList.add('is-active'), 500)
+      // should log (node and function passed in)
+      TailEnd
+        .animationEnd(box2, node => node.classList.add('is-active'))
+        .then(() => console.log('#box2 animation done (via passed in function).'))
     </script>
   </body>
 </html>
