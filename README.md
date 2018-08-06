@@ -24,21 +24,18 @@ Both exported functions add a Promise-wrapped event handler to the node. The Pro
 ```javascript
 import { animationEnd } from 'tail-end'
 
-const node = document.querySelector('.example')
+// bind the event, then trigger it
+animationEnd(node)
+  .then(() => console.log('Transition ended.'))
+  .catch(error => console.log('Invalid node passed in: ', error))
 
-// bind the event
-animationEnd(node).then(() => console.log('Transition ended.'))
-
-// then trigger it
 node.classList.add('will-animate')
 ```
 
-For usage with `async`/`await` you can pass in a function as the second parameter. The function will be called after the event listener is bound, and passed the `node`.
+For usage with `async`/`await` you can pass in a `function` as the second parameter. The function will be called after the event listener is bound, and passed the `node`.
 
 ```javascript
 import { transitionEnd } from 'tail-end'
-
-const node = document.querySelector('.example')
 
 // define a sequence of animations/transition with async/await
 const sequence = async () => {
