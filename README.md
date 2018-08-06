@@ -27,13 +27,13 @@ import { transitionEnd } from 'tail-end'
 const node = document.querySelector('.example')
 
 // bind the event
-transitionEnd(node).then(_ => console.log('Transition ended.'))
+transitionEnd(node).then(() => console.log('Transition ended.'))
 
 // then trigger it
 node.classList.add('will-transition')
 ```
 
-For usage with `async`/`await`, you can pass a function that triggers the event in directly.
+For usage with `async`/`await` you can pass in a function - that triggers the event - directly.
 
 ```javascript
 import { animationEnd } from 'tail-end'
@@ -41,14 +41,14 @@ import { animationEnd } from 'tail-end'
 const node = document.querySelector('.example')
 
 // define a sequence of animations/transition with async/await
-const sequence = async _ => {
+const sequence = async () => {
   await transitionEnd(node, node => node.style.transform = 'translate3d(100px, 0, 0)')
   await transitionEnd(node, node => node.style.transform = 'translate3d(0, 0, 0)')
   await transitionEnd(node, node => node.style.transform = 'translate3d(-100px, 0, 0)')
 }
 
 // run the sequence
-sequence().then(_ => console.log('Sequence completed.'))
+sequence().then(() => console.log('Sequence completed.'))
 ```
 
 ## License
