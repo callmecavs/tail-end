@@ -1,7 +1,7 @@
 const builder = eventName => node => new Promise((resolve, reject) => {
   // reject for invalid node
   if (!(node instanceof window.HTMLElement)) {
-    return reject('tail-end: an element node is required.')
+    return reject(new Error('tail-end: an element node is required.'))
   }
 
   // create the event handler
