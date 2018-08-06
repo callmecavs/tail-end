@@ -8,14 +8,20 @@
 
     <style>
       #box1,
-      #box2 {
+      #box2,
+      #box3 {
         width: 100px;
         height: 100px;
         background-color: black;
       }
 
-      #box1 {
+      #box1,
+      #box3 {
         transition: transform .5s ease;
+      }
+
+      #box3 {
+        margin-left: 250px;
       }
 
       @keyframes test {
@@ -30,6 +36,7 @@
   <body>
     <div id="box1"></div>
     <div id="box2"></div>
+    <div id="box3"></div>
 
     <script src="../dist/tail-end.js"></script>
     <script>
@@ -38,6 +45,7 @@
 
       const box1 = document.getElementById('box1')
       const box2 = document.getElementById('box2')
+      const box3 = document.getElementById('box3')
 
       // should error
       TailEnd
@@ -49,12 +57,22 @@
         .transitionEnd(box1)
         .then(() => console.log('#box1 transition done.'))
 
-      box1.classList.add('is-active')
+      setTimeout(() => box1.classList.add('is-active'), 0)
 
       // should log (node and function passed in)
       TailEnd
         .animationEnd(box2, node => node.classList.add('is-active'))
         .then(() => console.log('#box2 animation done (via passed in function).'))
+
+      // should log (async/await)
+      const sequence = async () => {
+        await TailEnd.transitionEnd(box3, node => node.style.transform = 'translate3d(100px, 0, 0)')
+        await TailEnd.transitionEnd(box3, node => node.style.transform = 'translate3d(0, 0, 0)')
+        await TailEnd.transitionEnd(box3, node => node.style.transform = 'translate3d(-100px, 0, 0)')
+      }
+
+      // run the sequence
+      setTimeout(() => sequence().then(() => console.log('Sequence completed.')), 0)
     </script>
   </body>
 </html>
