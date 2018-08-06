@@ -42,7 +42,7 @@
       // should error
       TailEnd
         .transitionEnd(null)
-        .catch(error => console.log(error))
+        .catch(console.log)
 
       // should log (only node passed in, transition triggered after)
       TailEnd
