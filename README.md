@@ -14,12 +14,10 @@ $ npm i tail-end --save
 
 The following functions are exported:
 
-* `animationEnd`
-* `transitionEnd`
+* `animationEnd(node[, function])`
+* `transitionEnd(node[, function])`
 
-### .function(node[, function])
-
-Both exported functions add a Promise-wrapped event handler to the node. The Promise removes the event listener and resolves itself when the event is triggered.
+Both exports add a Promise-wrapped event handler to the node. The Promise removes the event listener and resolves itself when the event is triggered.
 
 ```javascript
 import { animationEnd } from 'tail-end'
