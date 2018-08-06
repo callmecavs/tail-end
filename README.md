@@ -22,21 +22,21 @@ The following functions are exported:
 Both exported functions add a Promise-wrapped event handler to the node. The Promise removes the event listener and resolves itself when the event is triggered.
 
 ```javascript
-import { transitionEnd } from 'tail-end'
+import { animationEnd } from 'tail-end'
 
 const node = document.querySelector('.example')
 
 // bind the event
-transitionEnd(node).then(() => console.log('Transition ended.'))
+animationEnd(node).then(() => console.log('Transition ended.'))
 
 // then trigger it
-node.classList.add('will-transition')
+node.classList.add('will-animate')
 ```
 
 For usage with `async`/`await` you can pass in a function - that triggers the event - directly.
 
 ```javascript
-import { animationEnd } from 'tail-end'
+import { transitionEnd } from 'tail-end'
 
 const node = document.querySelector('.example')
 
