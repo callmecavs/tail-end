@@ -33,7 +33,7 @@ animationEnd(node).then(() => console.log('Transition ended.'))
 node.classList.add('will-animate')
 ```
 
-For usage with `async`/`await` you can pass in a function - that triggers the event - directly.
+For usage with `async`/`await` you can pass in a function as the second parameter. The function will be called after the event listener is bound, and passed the `node`.
 
 ```javascript
 import { transitionEnd } from 'tail-end'
