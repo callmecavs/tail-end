@@ -2,7 +2,7 @@
 
 [![tail-end on NPM](https://img.shields.io/npm/v/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![tail-end Downloads on NPM](https://img.shields.io/npm/dm/tail-end.svg?style=flat-square)](https://www.npmjs.com/package/tail-end) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-Promise-wrapped animations and transitions.
+Promise-wrapped animations and transitions (`async`/`await` friendly).
 
 ## Install
 
@@ -12,49 +12,36 @@ $ npm i tail-end --save
 
 ## API
 
-### .animationEnd(node)
+### .function(node[, function])
 
-Adds a Promise-wrapped `animationend` event handler to the node.
+Both exported functions add a Promise-wrapped event handler to the node.
 
-It resolves and removes itself when the next `animationend` event is triggered.
-
-```javascript
-import { animationEnd } from 'tail-end'
-
-// cache the node
-const node = document.getElementById('example')
-
-// bind the animationend event
-animationEnd(node)
-  .then(() => console.log('Animation done.'))
-  .catch(error => console.log(`Invalid node: ${error}`))
-
-// TODO: something to trigger the event
-```
-
-### .transitionEnd(node)
-
-Adds a Promise-wrapped `transitionend` event handler to the node.
-
-It resolves and removes itself when the next `transitionend` event is triggered.
+The Promise removes the event listener and resolves itself when the event is triggered.
 
 ```javascript
-import { transitionEnd } from 'tail-end'
+import {
+  animationEnd,
+  transitionEnd
+} from 'tail-end'
 
-// cache the node
-const node = document.getElementById('example')
+const node = document.querySelector('.example')
 
-// bind the animationend event
-transitionEnd(node)
-  .then(() => console.log('Transition done.'))
-  .catch(error => console.log(`Invalid node: ${error}`))
+// bind the event, then trigger it
+transitionEnd(node).then(() => console.log('Transition ended.'))
+node.classList.add('should-transition')
 
-// TODO: something to trigger the event
+// or pass in a function that triggers the event
+animationEnd(node, node => node.classList.add('should-animate'))
+
+// usage with async/await
+const sequence = async () => {
+  await transitionEnd(node, node => node.style.transform = 'translate3d(100px, 0, 0)')
+  await transitionEnd(node, node => node.style.transform = 'translate3d(0, 0, 0)')
+  await transitionEnd(node, node => node.style.transform = 'translate3d(-100px, 0, 0)')
+}
+
+sequence().then(() => console.log('Sequence completed.'))
 ```
-
-## Roadmap
-
-- [ ] Event name detection (`animationend` and `transitionend` are prefixed in some browsers)
 
 ## License
 
