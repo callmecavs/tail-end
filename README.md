@@ -58,4 +58,4 @@ transitionEnd(node)
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
+[MIT](https://opensource.org/licenses/MIT). © 2018 Michael Cavalea
