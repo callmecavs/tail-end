@@ -12,35 +12,43 @@ $ npm i tail-end --save
 
 ## API
 
+The following functions are exported:
+
+* `animationEnd`
+* `transitionEnd`
+
 ### .function(node[, function])
 
-Both exported functions add a Promise-wrapped event handler to the node.
-
-The Promise removes the event listener and resolves itself when the event is triggered.
+Both exported functions add a Promise-wrapped event handler to the node. The Promise removes the event listener and resolves itself when the event is triggered.
 
 ```javascript
-import {
-  animationEnd,
-  transitionEnd
-} from 'tail-end'
+import { transitionEnd } from 'tail-end'
 
 const node = document.querySelector('.example')
 
-// bind the event, then trigger it
-transitionEnd(node).then(() => console.log('Transition ended.'))
-node.classList.add('should-transition')
+// bind the event
+transitionEnd(node).then(_ => console.log('Transition ended.'))
 
-// or pass in a function that triggers the event
-animationEnd(node, node => node.classList.add('should-animate'))
+// then trigger it
+node.classList.add('will-transition')
+```
 
-// usage with async/await
-const sequence = async () => {
+For usage with `async`/`await`, you can pass a function that triggers the event in directly.
+
+```javascript
+import { animationEnd } from 'tail-end'
+
+const node = document.querySelector('.example')
+
+// define a sequence of animations/transition with async/await
+const sequence = async _ => {
   await transitionEnd(node, node => node.style.transform = 'translate3d(100px, 0, 0)')
   await transitionEnd(node, node => node.style.transform = 'translate3d(0, 0, 0)')
   await transitionEnd(node, node => node.style.transform = 'translate3d(-100px, 0, 0)')
 }
 
-sequence().then(() => console.log('Sequence completed.'))
+// run the sequence
+sequence().then(_ => console.log('Sequence completed.'))
 ```
 
 ## License
