@@ -1,7 +1,7 @@
 const builder = eventName => (node, func) => new Promise((resolve, reject) => {
   // reject for invalid node
-  if (!(node instanceof window.HTMLElement)) {
-    return reject(new Error('tail-end: an element node is required.'))
+  if (!(node instanceof window.HTMLElement || node instanceof window.SVGElement)) {
+    return reject(new Error('tail-end: an HTML or SVG element is required.'))
   }
 
   // create the event handler
